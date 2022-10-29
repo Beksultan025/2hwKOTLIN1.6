@@ -24,14 +24,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val launcherData =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
-                if (result.resultCode == Activity.RESULT_OK)
-                    Toast.makeText(this, getString(R.string.toast), Toast.LENGTH_SHORT).show()
-                if (result.data != null) {
+                if (result.resultCode == Activity.RESULT_OK && result.data != null) {
                     val data =
                         result.data?.getStringExtra(ActivitySelectedMeaningEt.EXTRA_DATA_NAME)
                     binding.textEt.setText(data)
                 }
-
             }
 
         binding.clickBtn.setOnClickListener {

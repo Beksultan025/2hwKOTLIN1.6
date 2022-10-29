@@ -21,25 +21,18 @@ class ActivitySelectedMeaningEt : BaseActivity<ActivitySelectedMeaningEtBinding>
     }
 
     override fun initListener() {
-        val data = binding.textEt.text.trim().toString()
         val desc = intent.getStringExtra(maASMEMeaning)
         binding.textEt.setText(desc)
 
         binding.clickBtn.setOnClickListener {
-            if (binding.textEt.text.trim().toString().isEmpty()) {
-                Toast.makeText(
-                    this@ActivitySelectedMeaningEt,
-                    getString(R.string.toast),
-                    Toast.LENGTH_SHORT
-                ).show()
+            val data = binding.textEt.text.trim().toString()
+
+            if (data.isEmpty()) {
+                Toast.makeText(this@ActivitySelectedMeaningEt, getString(R.string.toast), Toast.LENGTH_SHORT).show()
             } else {
                 Intent(this@ActivitySelectedMeaningEt, MainActivity::class.java).apply {
                     putExtra(EXTRA_DATA_NAME , data)
-                    setResult(
-                        RESULT_OK ,
-                        intent
-                    )
-
+                    setResult(RESULT_OK , this)
                     finish()
                 }
             }
